@@ -13,8 +13,8 @@ function filterData(txtInput, restaurants) {
 }
 
 const Body = () => {
-  const [allRestaurants, setAllRestaurant] = useState();
-  const [filterRestaurants, setFilterRestaurant] = useState(RestaurantList);
+  const [allRestaurants, setAllRestaurant] = useState(null);
+  const [filterRestaurants, setFilterRestaurant] = useState({});
   const [txtInput, setTxtInput] = useState("");
 
   useEffect(() => {
@@ -37,6 +37,10 @@ const Body = () => {
     textDecoration: "none",
     color: "black",
   };
+
+  if (filterRestaurants.length === 0) {
+    return <h1>😒No Restaurant Found😒</h1>;
+  }
 
   return !allRestaurants ? (
     <Shimmer />
