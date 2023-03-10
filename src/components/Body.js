@@ -4,6 +4,7 @@ import RestaurantCard from "../RestaurantCard";
 import { useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnline from "../utils/useOnline";
 
 function filterData(txtInput, restaurants) {
   const filterData = restaurants.filter((restaurant) =>
@@ -33,6 +34,15 @@ const Body = () => {
     setAllRestaurant(json?.data?.cards[2]?.data?.data?.cards);
   }
 
+  const isOnline = useOnline();
+  if (!isOnline) {
+    return (
+      <h1 className="font-bold text-lg text-red-700">
+        Offilne, please check your internet connection
+      </h1>
+    );
+  }
+
   const style = {
     textDecoration: "none",
     color: "black",
@@ -49,7 +59,7 @@ const Body = () => {
       <div className="input-div">
         <input
           type="text"
-          className="input"
+          className="shadow-md focus-visible:bg-gray-200 m-2"
           value={txtInput}
           placeholder="Search"
           onChange={(e) => {
@@ -57,7 +67,7 @@ const Body = () => {
           }}
         />
         <button
-          className="btn"
+          className="bg-blue-300 m-2 py-1 px-5 rounded-lg text-white font-semibold shadow-md hover:bg-blue-700"
           onClick={() => {
             const data = filterData(txtInput, allRestaurants);
 
@@ -67,7 +77,7 @@ const Body = () => {
           SEARCH
         </button>
       </div>
-      <div className="body">
+      <div className="flex flex-wrap">
         {filterRestaurants.map((restaurant) => {
           return (
             <Link

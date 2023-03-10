@@ -4,8 +4,8 @@ const Title = () => (
   <a href="/">
     <img
       alt="logo"
-      className="logo"
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxc9DTAqOlERTz8whSgUP7-zR3mYZzxlg7Ug&usqp=CAU"
+      className="w-16"
+      src="https://cdn-icons-png.flaticon.com/512/4001/4001015.png"
     />
   </a>
 );
@@ -19,25 +19,25 @@ const style = {
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
-    <div className="header">
+    <div className="flex justify-between bg-sky-200 shadow-lg m-2">
       <Title />
       <div className="nav-item">
-        <ul>
+        <ul className="flex mt-4">
           <Link to="/" style={style}>
-            <li>Home</li>
+            <li className="px-6">Home</li>
           </Link>
           <Link to="/about" style={style}>
-            <li>About</li>
+            <li className="px-6">About</li>
           </Link>
           <Link to="/contact" style={style}>
-            <li>Contact</li>
+            <li className="px-6">Contact</li>
           </Link>
           <Link to="" style={style}>
-            <li>Cart</li>
+            <li className="px-6">Cart</li>
           </Link>
         </ul>
       </div>
-      <div className="btn">
+      <div className="mt-4">
         {isLoggedIn ? (
           <button onClick={() => setIsLoggedIn(false)}>LOGOUT</button>
         ) : (
