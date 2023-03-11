@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -9,13 +9,24 @@ import Error from "./components/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Instamart from "./components/Instamart";
+import UserContext from "./utils/UserContext";
 
 const Layout = () => {
+  const [user, setUser] = useState({
+    name: "Ayush Kumawat",
+    email: "ayushkumawat1122@gmail.com",
+  });
   return (
     <>
-      <Header />
-      <Outlet />
-      <Footer />
+      <UserContext.Provider
+        value={{
+          user: user,
+        }}
+      >
+        <Header />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
     </>
   );
 };

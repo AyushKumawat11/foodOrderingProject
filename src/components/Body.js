@@ -43,11 +43,6 @@ const Body = () => {
     );
   }
 
-  const style = {
-    textDecoration: "none",
-    color: "black",
-  };
-
   if (filterRestaurants.length === 0) {
     return <h1>😒No Restaurant Found😒</h1>;
   }
@@ -61,7 +56,7 @@ const Body = () => {
           type="text"
           className="shadow-md focus-visible:bg-gray-200 m-2"
           value={txtInput}
-          placeholder="Search"
+          placeholder="Search Restaurant"
           onChange={(e) => {
             setTxtInput(e.target.value);
           }}
@@ -83,7 +78,6 @@ const Body = () => {
             <Link
               to={"/restaurant/" + restaurant.data.id}
               key={restaurant.data.id}
-              style={style}
             >
               <RestaurantCard {...restaurant.data} />
             </Link>

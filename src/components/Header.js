@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 const Title = () => (
   <a href="/">
     <img
@@ -10,41 +11,45 @@ const Title = () => (
   </a>
 );
 
-const style = {
-  textDecoration: "none",
-  paddingLeft: 13,
-  color: "black",
-};
-
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const { user } = useContext(UserContext);
+
   return (
     <div className="flex justify-between bg-sky-200 shadow-lg m-2">
       <Title />
       <div className="nav-item">
         <ul className="flex mt-4">
-          <Link to="/" style={style}>
-            <li className="px-6 hover:text-fuchsia-700">Home</li>
+          <Link to="/">
+            <li className="px-6 hover:text-fuchsia-700 ">Home</li>
           </Link>
-          <Link to="/about" style={style}>
+          <Link to="/about">
             <li className="px-6 hover:text-fuchsia-700">About</li>
           </Link>
-          <Link to="/contact" style={style}>
+          <Link to="/contact">
             <li className="px-6 hover:text-fuchsia-700">Contact</li>
           </Link>
-          <Link to="" style={style}>
+          <Link to="">
             <li className="px-6 hover:text-fuchsia-700">Cart</li>
           </Link>
-          <Link to="/instamart" style={style}>
+          <Link to="/instamart">
             <li className="px-6 hover:text-fuchsia-700">Instamart</li>
           </Link>
         </ul>
       </div>
-      <div className="mt-4">
+      <div className="flex">
+        <h1 className="font-bold text-lg text-pink-800 mr-4 mt-5">
+          {user.name}
+        </h1>
         {isLoggedIn ? (
-          <button onClick={() => setIsLoggedIn(false)}>LOGOUT</button>
+          <button onClick={() => setIsLoggedIn(false)} className="mt-2">
+            LOGOUT
+          </button>
         ) : (
-          <button onClick={() => setIsLoggedIn(true)}>LOGIN</button>
+          <button onClick={() => setIsLoggedIn(true)} className="mt-2">
+            LOGIN
+          </button>
         )}
       </div>
     </div>
