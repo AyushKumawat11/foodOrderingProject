@@ -24,16 +24,19 @@ const Header = () => {
       <div className="nav-item">
         <ul className="flex mt-4">
           <Link to="/" style={style}>
-            <li className="px-6">Home</li>
+            <li className="px-6 hover:text-fuchsia-700">Home</li>
           </Link>
           <Link to="/about" style={style}>
-            <li className="px-6">About</li>
+            <li className="px-6 hover:text-fuchsia-700">About</li>
           </Link>
           <Link to="/contact" style={style}>
-            <li className="px-6">Contact</li>
+            <li className="px-6 hover:text-fuchsia-700">Contact</li>
           </Link>
           <Link to="" style={style}>
-            <li className="px-6">Cart</li>
+            <li className="px-6 hover:text-fuchsia-700">Cart</li>
+          </Link>
+          <Link to="/instamart" style={style}>
+            <li className="px-6 hover:text-fuchsia-700">Instamart</li>
           </Link>
         </ul>
       </div>
