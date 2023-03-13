@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import UserContext from "../utils/UserContext";
 const Title = () => (
@@ -16,6 +17,8 @@ const Header = () => {
 
   const { user } = useContext(UserContext);
 
+  const cartItems = useSelector((store) => store.cart.items);
+
   return (
     <div className="flex justify-between bg-sky-200 shadow-lg m-2">
       <Title />
@@ -30,11 +33,13 @@ const Header = () => {
           <Link to="/contact">
             <li className="px-6 hover:text-fuchsia-700">Contact</li>
           </Link>
-          <Link to="">
-            <li className="px-6 hover:text-fuchsia-700">Cart</li>
-          </Link>
           <Link to="/instamart">
             <li className="px-6 hover:text-fuchsia-700">Instamart</li>
+          </Link>
+          <Link to="/cart">
+            <li className="px-6 hover:text-fuchsia-700">
+              Cart {cartItems.length}
+            </li>
           </Link>
         </ul>
       </div>
@@ -43,11 +48,17 @@ const Header = () => {
           {user.name}
         </h1>
         {isLoggedIn ? (
-          <button onClick={() => setIsLoggedIn(false)} className="mt-2">
+          <button
+            onClick={() => setIsLoggedIn(false)}
+            className="mt-2 hover:text-fuchsia-700"
+          >
             LOGOUT
           </button>
         ) : (
-          <button onClick={() => setIsLoggedIn(true)} className="mt-2">
+          <button
+            onClick={() => setIsLoggedIn(true)}
+            className="mt-2 hover:text-fuchsia-700"
+          >
             LOGIN
           </button>
         )}
